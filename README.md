@@ -237,11 +237,17 @@ For Roundcube to be accessible via a web browser, we need to make it available t
     sudo systemctl reload apache2
     ```
 
----
 
+3. **access Roundcube at `http://10.0.2.15/roundcube`**
+- Log in as user1 and send an email to user2.
+- Log in as user2 and send an email to user3.
+- Log in as user3 and send an email to user4.
+- Log in as user4 and send an email to user1.
+
+---
 ## Conclusion
 
-You now have a fully functional email server! You can access Roundcube at `http://yourdomain.com/roundcube` and log in using the email accounts you created. Postfix will handle outgoing emails, Dovecot will retrieve incoming emails, and Roundcube provides an easy-to-use web interface for managing your inbox.
+You now have a fully functional email server! You can access Roundcube at `http://10.0.2.15/roundcube` and log in using the email accounts you created. Postfix will handle outgoing emails, Dovecot will retrieve incoming emails, and Roundcube provides an easy-to-use web interface for managing your inbox.
 
 For additional security, consider setting up SSL certificates using **Let’s Encrypt**, and configuring **SPF**, **DKIM**, and **DMARC** to protect against email spoofing.
 
