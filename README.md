@@ -224,20 +224,62 @@ You will need to create system users for each person who will have an email acco
 
 For Roundcube to be accessible via a web browser, we need to make it available through Apache.
 
-1. **Create a symlink to Roundcube in the web root**:
+a. **Create a symlink to Roundcube in the web root**:
 
     ```bash
     sudo ln -s /usr/share/roundcube /var/www/html/roundcube
     ```
 
-2. **Enable the Roundcube Apache configuration**:
+b. **Enable the Roundcube Apache configuration**:
 
     ```bash
     sudo a2enconf roundcube
     sudo systemctl reload apache2
     ```
+c. **uncomment these lines,  firstly open this file**
+```sh
+sudo gedit /etc/dovecot/conf.d/10-master.conf
+```
+- then uncomment
+```php  
+service pop3-login {
+  inet_listener pop3 {
+    port = 110
+  }
+  inet_listener pop3s {
+    port = 995
+    ssl = yes
+  }
+}
 
 
+service imap-login {
+  inet_listener imap {
+    port = 143
+  }
+  inet_listener imaps {
+    port = 993
+    ssl = yes
+  }
+```
+
+d. **This will auto-complete addresses without a domain.**
+```bash
+sudo gedit /etc/roundcube/config.inc.php
+```
+- then add these lines
+```php
+$config['mail_domain'] = '10.0.2.15'; 
+$config['validate_email'] = false;
+```
+
+e. **restart services**
+```bash
+
+sudo systemctl restart dovecot
+sudo systemctl restart apache2
+sudo systemctl restart postfix
+```
 3. **access Roundcube at `http://10.0.2.15/roundcube`**
 - Log in as user1 and send an email to user2.
 - Log in as user2 and send an email to user3.
