@@ -97,6 +97,11 @@ Once installed, you need to make some additional changes to the Postfix configur
     myorigin = $mydomain
     inet_interfaces = all
     inet_protocols = ipv4
+    myhostname = management.co.tz
+    mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
+    smtpd_recipient_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination
+
+
     ```
 
     ### Explanation:
@@ -175,8 +180,7 @@ Now that Postfix and Dovecot are handling email transport and retrieval, we need
     ```bash
     sudo nano /etc/roundcube/config.inc.php
     ```
-
-2. **Set the following configuration parameters**:
+- Set the following configuration parameters**:
 
     ```php
     $config['default_host'] = 'localhost';  // IMAP Server
@@ -184,6 +188,13 @@ Now that Postfix and Dovecot are handling email transport and retrieval, we need
 
     $config['smtp_server'] = 'localhost';   // SMTP Server (Postfix)
     $config['smtp_port'] = 25;              // SMTP Port
+
+    $config['smtp_port'] = 25;              // Default SMTP port
+    $config['smtp_user'] = '%u';            // Use the full email as the SMTP username
+    $config['smtp_pass'] = '%p';            // Use the password provided by the user
+    $config['mail_domain'] = 'management.co.tz';  // Set the mail domain
+    $config['smtp_auth_type'] = 'LOGIN';    // Enable SMTP authentication
+
     ```
 
 ### Explanation:
