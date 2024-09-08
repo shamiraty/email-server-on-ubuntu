@@ -1,7 +1,8 @@
 # SYSTEM ADMINISTRATION AND DEVELOPMENT
 ### EMAIL SERVER ON A LINUX/UBUNTU SERVER WITH APACHE, DOVECOT AND POSTFIX
 ### GET AN OFFICIAL EMAILS FOR COMPANY EMPLOYEES USING ROUNDCUBE CLIENT SIDE FOR MAILS
-
+![Q](https://github.com/user-attachments/assets/575b2d2d-7268-409e-800d-583edf0d552f)
+---
 ## Introduction
 
 **Hello, community!** Today, I will demonstrate how to configure an email server for your company, allowing you to have your own official email address rather than using services like Gmail, Yahoo, or Outlook. This setup will grant you full control over your email system, without limitations on the size, bandwidth, or number of users. 
